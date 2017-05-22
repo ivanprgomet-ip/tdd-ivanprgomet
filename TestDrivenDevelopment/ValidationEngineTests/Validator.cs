@@ -48,27 +48,12 @@ namespace ValidationEngineTests
                 foreach (var character in email)
                 {
                     if (character.ToString() == i.ToString())
-                        return false;
+                        throw new EmailContainingDigitsException();
                 }
             }
 
             // if we come this far, email is valid
             return true;
         }
-
-        //public bool ValidateEmailAddress(string email)
-        //{
-        //    Regex regex = new Regex(@"^([^.\d\-]+)@([^.\d\-]+)((\.(\D){2,3})+)$");
-        //    var match = regex.Match(email);
-        //    if (match.Success)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        throw new InvalidEmailException();
-        //    }
-
-        //}
     }
 }
