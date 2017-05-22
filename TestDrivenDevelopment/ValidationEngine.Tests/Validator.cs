@@ -33,17 +33,9 @@ namespace ValidationEngine.Tests
                     throw new EmailContainsNoAtSymbolException();
             }
 
-
-            // FILTERS 
-
             // check if mail is an empty string or null
             if (string.IsNullOrEmpty(email))
                 throw new EmailIsNullOrEmptyException();
-
-            // return false if mail doesnt end with .com 
-            if (dotString != ".com")
-                return false;
-
 
             // return false if mail contains any digit
             for (int i = 0; i < 10; i++)
