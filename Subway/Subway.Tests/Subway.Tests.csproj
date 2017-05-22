@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="SubwayExceptions.cs" />
+    <Compile Include="SubwayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TravelCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
