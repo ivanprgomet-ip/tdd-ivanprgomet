@@ -8,15 +8,21 @@ namespace ValidationEngineTests
         internal bool ValidateEmailAddress(string email)
         {
             string dotString = "";
-            if (email != string.Empty && email.Contains("@"))
+            if (email != string.Empty)
             {
-                string[] chunks = email.Split('@');
-                int indexOfDot = chunks[1].IndexOf('.'); // index of the . in the second part of the email address (after the at symbol)
 
-                // if theres no . (eg. .com)
-                if (indexOfDot == -1)
-                    return false;
-                dotString = chunks[1].Substring(indexOfDot); // eg. ".com" or ".se"
+                if (email.Contains("@"))
+                {
+                    string[] chunks = email.Split('@');
+                    int indexOfDot = chunks[1].IndexOf('.'); // index of the . in the second part of the email address (after the at symbol)
+
+                    // if theres no . (eg. .com)
+                    if (indexOfDot == -1)
+                        return false;
+                    dotString = chunks[1].Substring(indexOfDot); // eg. ".com" or ".se"
+                }
+                else // if email doesnt contain any @ symbol
+                    throw new EmailContainsNoAtSymbolException();
             }
 
             // FILTERS 
@@ -29,14 +35,12 @@ namespace ValidationEngineTests
             if (string.IsNullOrEmpty(dotString))
                 return false;
 
-            // check if mail contains the @ symbol
-            if (!email.Contains("@"))
-                return false;
+
 
             // return false if mail doesnt end with .com 
             if (dotString != ".com")
                 return false;
-            
+
 
             // return false if mail contains any digit
             for (int i = 0; i < 10; i++)
