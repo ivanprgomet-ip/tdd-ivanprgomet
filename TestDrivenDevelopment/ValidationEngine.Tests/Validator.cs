@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ValidationEngineTests
+namespace ValidationEngine.Tests
 {
     internal class Validator
     {
