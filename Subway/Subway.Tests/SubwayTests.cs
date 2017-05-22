@@ -13,8 +13,17 @@ namespace Subway.Tests
         [Test]
         public void TouchingInDecrementsBalance()
         {
+            // ARRANGE
             var sut = new TravelCard(15);
-            // Touch in/out a couple of times sut.TouchIn(); sut.TouchOut(); sut.TouchIn(); sut.TouchOut();
+
+            // Touch in/out a couple of times 
+            // ACT
+            sut.TouchIn();
+            sut.TouchOut();
+            sut.TouchIn();
+            sut.TouchOut();
+
+            // ASSERT
             Assert.AreEqual(13, sut.TravelBalance, "Got decremented balance");
         }
 
@@ -23,9 +32,11 @@ namespace Subway.Tests
         public void MultipleTouchInsNotAllowed()
         {
             var sut = new TravelCard(5);
-            Assert.Throws<AlreadyTouchedInException>(() => { sut.TouchIn(); sut.TouchIn(); });
+            Assert.Throws<AlreadyTouchedInException>(() => 
+            {
+                sut.TouchIn();
+                sut.TouchIn();
+            });
         }
-
-
     }
 }

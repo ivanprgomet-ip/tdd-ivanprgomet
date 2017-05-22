@@ -4,17 +4,25 @@ namespace Subway.Tests
 {
     internal class TravelCard
     {
-        private int v;
-        public decimal TravelBalance;
+        public int TravelBalance;
+        private bool touchedIn;
 
-        public TravelCard(int v)
+        public TravelCard(int balance)
         {
-            this.v = v;
+            this.TravelBalance = balance;
         }
 
-        internal void TouchIn()
+        public void TouchIn()
         {
-            throw new NotImplementedException();
+            if (touchedIn)
+                throw new AlreadyTouchedInException();
+            touchedIn = true;
+        }
+
+        internal void TouchOut()
+        {
+            touchedIn = false;
+            TravelBalance--;
         }
     }
 }
