@@ -8,34 +8,37 @@ namespace ValidationEngineTests
         internal bool ValidateEmailAddress(string email)
         {
             string dotString = "";
-            if (email != string.Empty)
+            if (!string.IsNullOrEmpty(email))
             {
 
                 if (email.Contains("@"))
                 {
                     string[] chunks = email.Split('@');
+
+                    // check if first chunk contains a dot (which it shouldn)
+                    foreach (var character in chunks[0])
+                    {
+                        if (character == '.')
+                            throw new EmailContainingDotInFirstPartOfAddressException();
+                    }
+
                     int indexOfDot = chunks[1].IndexOf('.'); // index of the . in the second part of the email address (after the at symbol)
 
-                    // if theres no . (eg. .com)
+                    // return false if mail contains no dotstring (eg. .com)
                     if (indexOfDot == -1)
-                        return false;
+                        throw new EmailContainsNoDotStringException();
                     dotString = chunks[1].Substring(indexOfDot); // eg. ".com" or ".se"
                 }
                 else // if email doesnt contain any @ symbol
                     throw new EmailContainsNoAtSymbolException();
             }
 
+
             // FILTERS 
 
             // check if mail is an empty string or null
             if (string.IsNullOrEmpty(email))
                 throw new EmailIsNullOrEmptyException();
-
-            // return false if mail contains no dotstring
-            if (string.IsNullOrEmpty(dotString))
-                return false;
-
-
 
             // return false if mail doesnt end with .com 
             if (dotString != ".com")
