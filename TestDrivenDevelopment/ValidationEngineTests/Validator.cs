@@ -8,6 +8,8 @@ namespace ValidationEngineTests
         {
             if (string.IsNullOrEmpty(email))
                 return false;
+            if (!email.Contains("@"))
+                return false;
             return true;
         }
     }
