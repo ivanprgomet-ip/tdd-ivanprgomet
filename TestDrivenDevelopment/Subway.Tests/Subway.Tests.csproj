@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EF5973B-4EAE-41F8-B1F7-A3CF76CC1B1F}</ProjectGuid>
+    <ProjectGuid>{13948CCF-FC2E-4E4B-ACC9-2C67D3AB9191}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Subway.Tests</RootNamespace>
@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubwayExceptions.cs" />
     <Compile Include="SubwayTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TravelCard.cs" />
   </ItemGroup>
   <ItemGroup>
