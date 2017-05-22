@@ -23,7 +23,7 @@ namespace ValidationEngineTests
 
             // check if mail is an empty string or null
             if (string.IsNullOrEmpty(email))
-                return false;
+                throw new EmailIsNullOrEmptyException();
 
             // return false if mail contains no dotstring
             if (string.IsNullOrEmpty(dotString))
