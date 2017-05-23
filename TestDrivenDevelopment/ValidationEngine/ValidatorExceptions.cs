@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ValidationEngine.Tests
+namespace ValidationEngine
 {
     public class InvalidEmailException:Exception
     {

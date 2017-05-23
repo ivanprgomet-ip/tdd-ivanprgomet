@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidationEngine;
 
 namespace ValidationEngine.Tests
 {
@@ -13,7 +14,7 @@ namespace ValidationEngine.Tests
     public class ValidationTests
     {
         [Test]
-        public void TrueForValidAddress()
+        public void TrueForValidEmail()
         {
             // arrange
             Validator sut = new Validator();
@@ -22,7 +23,7 @@ namespace ValidationEngine.Tests
             bool isValid = sut.ValidateEmailAddress("ivanprgomet@hotmail.com");
 
             // assert
-            Assert.IsTrue(isValid, "email is invalid");
+            Assert.IsTrue(isValid);
         }
 
         [Test]

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ValidationEngine.Tests
+namespace ValidationEngine
 {
-    internal class Validator
+    public class Validator
     {
-        internal bool ValidateEmailAddress(string email)
+        public bool ValidateEmailAddress(string email)
         {
             string dotString = "";
             if (!string.IsNullOrEmpty(email))
