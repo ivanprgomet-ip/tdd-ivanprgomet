@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SubwayDemo", "SubwayDemo", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subway.Tests", "Subway.Tests\Subway.Tests.csproj", "{13948CCF-FC2E-4E4B-ACC9-2C67D3AB9191}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise-01-WritingBasicUnitTests", "Exercise-01-WritingBasicUnitTests", "{C011F9D3-953B-4BC6-84B4-3764CB69A6FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise-01-EmailValidator", "Exercise-01-EmailValidator", "{C011F9D3-953B-4BC6-84B4-3764CB69A6FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationEngine", "ValidationEngine\ValidationEngine.csproj", "{CF56C405-D30A-4745-A26F-64B55B3FAC21}"
 EndProject
@@ -28,6 +28,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinChangerApplication", "CoinChangerApplication\CoinChangerApplication.csproj", "{6A77FB44-68D5-4449-A800-6E2B40DB2B5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinChangerApplication.Tests", "CoinChangerApplication.Tests\CoinChangerApplication.Tests.csproj", "{9471DB56-5962-4D97-AABD-777210CD1561}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise-02-BelieveItTravelAgency", "Exercise-02-BelieveItTravelAgency", "{9C7661D4-4E70-4E42-9AC8-B3B0534FCA2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Tests", "TravelAgency.Tests\TravelAgency.Tests.csproj", "{1B112F15-D19F-4207-9E62-CC5DAFBCC895}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.ConsoleGui", "TravelAgency.ConsoleGui\TravelAgency.ConsoleGui.csproj", "{2C0697C2-B87C-44FA-B79F-6F1B9218E903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +65,14 @@ Global
 		{9471DB56-5962-4D97-AABD-777210CD1561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9471DB56-5962-4D97-AABD-777210CD1561}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9471DB56-5962-4D97-AABD-777210CD1561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B112F15-D19F-4207-9E62-CC5DAFBCC895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B112F15-D19F-4207-9E62-CC5DAFBCC895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B112F15-D19F-4207-9E62-CC5DAFBCC895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B112F15-D19F-4207-9E62-CC5DAFBCC895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C0697C2-B87C-44FA-B79F-6F1B9218E903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0697C2-B87C-44FA-B79F-6F1B9218E903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0697C2-B87C-44FA-B79F-6F1B9218E903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0697C2-B87C-44FA-B79F-6F1B9218E903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +88,8 @@ Global
 		{CAECAFA3-78D6-499F-B5AF-CB1C3DEA3BB7} = {FF38C0D5-9DB0-40FE-8E5F-53995610B2DE}
 		{6A77FB44-68D5-4449-A800-6E2B40DB2B5B} = {CAECAFA3-78D6-499F-B5AF-CB1C3DEA3BB7}
 		{9471DB56-5962-4D97-AABD-777210CD1561} = {CAECAFA3-78D6-499F-B5AF-CB1C3DEA3BB7}
+		{9C7661D4-4E70-4E42-9AC8-B3B0534FCA2B} = {28B36003-D356-42AB-B585-9E0B4CAD4322}
+		{1B112F15-D19F-4207-9E62-CC5DAFBCC895} = {9C7661D4-4E70-4E42-9AC8-B3B0534FCA2B}
+		{2C0697C2-B87C-44FA-B79F-6F1B9218E903} = {9C7661D4-4E70-4E42-9AC8-B3B0534FCA2B}
 	EndGlobalSection
 EndGlobal
