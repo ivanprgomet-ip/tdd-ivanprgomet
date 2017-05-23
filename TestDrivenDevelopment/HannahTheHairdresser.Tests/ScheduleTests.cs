@@ -42,9 +42,9 @@ namespace HannahTheHairdresser.Tests
         [Test]
         public void MultipleBookingsRetrievedInTimeOrder()
         {
-            // Tina makes the booking after Dave, but chooses an earlier time,
-            // hence, why we need to sort the schedule when retrieving bookings 
-            // for a particular day
+            /// Tina makes the booking after Dave, but chooses an earlier time,
+            /// hence, why we need to sort the schedule when retrieving bookings 
+            /// for a particular day
 
             sut.MakeBooking("Dave", new DateTime(2012, 10, 14, 10, 0, 0), TimeSpan.FromMinutes(45));
             sut.MakeBooking("Tina", new DateTime(2012, 10, 14, 9, 0, 0), TimeSpan.FromMinutes(60));
@@ -58,10 +58,24 @@ namespace HannahTheHairdresser.Tests
         [Test]
         public void CannotPlaceOverlappingBookings()
         {
+            /// Tina makes a booking half an hour before Dave, and wants to stay
+            /// for an hour, which is going to create an booking overlap
+
             sut.MakeBooking("Dave", new DateTime(2012, 10, 14, 10, 0, 0), TimeSpan.FromMinutes(45));
 
             Assert.Throws<OverlappingBookingException>(() 
                 => sut.MakeBooking("Tina", new DateTime(2012, 10, 14, 9, 30, 0), TimeSpan.FromMinutes(60)));
+        }
+
+        [Test]
+        public void OverlapSuggestsCorrectNextTime()
+        {
+            sut.MakeBooking("Dave", new DateTime(2012, 10, 14, 10, 0, 0), TimeSpan.FromMinutes(45));
+
+            var e = Assert.Throws<OverlappingBookingException>(() 
+                => sut.MakeBooking("Tina", new DateTime(2012, 10, 14, 9, 30, 0), TimeSpan.FromMinutes(60)));
+
+            Assert.AreEqual(new DateTime(2012, 10, 14, 10, 45, 0), e.SuggestedTime, "Correct suggested time");
         }
     }
 }
