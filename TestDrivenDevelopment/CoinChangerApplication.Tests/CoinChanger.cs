@@ -15,17 +15,12 @@ namespace CoinChangerApplication.Tests
 
         internal Dictionary<decimal, int> MakeChange(decimal turnMeIntoChangeAmount)
         {
-            // foreach coint type, biggest to smallest, dela up v i respektive delar
+            // sort first
+            coinTypes = coinTypes.OrderByDescending(c => c).ToList();
 
-            Dictionary<decimal, int> myChange = new Dictionary<decimal, int>();
-
-            // initialize the dictionary
-            foreach (var cointype in coinTypes)
-            {
-                myChange.Add(cointype, 0);
-            }
-
-
+            // initialize result dictionary 
+            Dictionary<decimal, int> myChange = InitializeWithCointypes(coinTypes);
+            
             foreach (var coinType in coinTypes)
             {
                 if(turnMeIntoChangeAmount % coinType != 0)
@@ -43,6 +38,19 @@ namespace CoinChangerApplication.Tests
                 }
             }
             return myChange;
+        }
+
+        private Dictionary<decimal, int> InitializeWithCointypes(List<decimal> coinTypes)
+        {
+            Dictionary<decimal, int> myChange = new Dictionary<decimal, int>();
+
+            foreach (var cointype in coinTypes)
+            {
+                myChange.Add(cointype, 0);
+            }
+
+            return myChange;
+
         }
     }
 }
