@@ -20,10 +20,10 @@ namespace CoinChangerApplication.Tests
 
             // initialize result dictionary 
             Dictionary<decimal, int> myChange = InitializeWithCointypes(coinTypes);
-            
+
             foreach (var coinType in coinTypes)
             {
-                if(turnMeIntoChangeAmount % coinType != 0)
+                if (turnMeIntoChangeAmount % coinType != 0)
                 {
                     // eg. turnmeintochangeamount = 14, cointype = 5
                     decimal rest = turnMeIntoChangeAmount % coinType;  // rest = 4
@@ -34,7 +34,10 @@ namespace CoinChangerApplication.Tests
                 }
                 else
                 {
-                    myChange[coinType] = (int)turnMeIntoChangeAmount;
+                    if (turnMeIntoChangeAmount < 1)
+                        myChange[coinType] = 1;
+                    else
+                        myChange[coinType] = (int)turnMeIntoChangeAmount;
                 }
             }
             return myChange;
