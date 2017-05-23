@@ -18,14 +18,14 @@ namespace CoinChangerApplication.Tests
             var sut = new CoinChanger(coinTypes);
 
             // act
-            Dictionary<decimal,int> myChange = sut.MakeChange(14m);
+            Dictionary<decimal, int> myChange = sut.MakeChange(14m);
 
             // assert
             Assert.AreEqual(14, myChange[1.0m]);
         }
 
         [Test]
-        public void CorrectChangeWhenUsingTwoCoinType()
+        public void CorrectChangeWhenUsingTwoCoinTypes()
         {
             // arrange
             var coinTypes = new List<decimal> { 5.0m, 1.0m };
@@ -38,6 +38,22 @@ namespace CoinChangerApplication.Tests
             Assert.AreEqual(4, myChange[1.0m]); // return 4 1's
             Assert.AreEqual(2, myChange[5.0m]); // return 2 5's
 
+        }
+
+        [Test]
+        public void CorrectChangeWhenUsingThreeCoinTypes()
+        {
+            // arrange
+            var coinTypes = new List<decimal> { 5.0m, 3.0m, 1.0m };
+            var sut = new CoinChanger(coinTypes);
+
+            // act
+            Dictionary<decimal, int> myChange = sut.MakeChange(14m);
+
+            // assert
+            Assert.AreEqual(1, myChange[1.0m]);
+            Assert.AreEqual(1, myChange[3.0m]);
+            Assert.AreEqual(2, myChange[5.0m]);
         }
     }
 }
