@@ -15,7 +15,21 @@ namespace HannahTheHairdresser.Tests
         }
         public void MakeBooking(string name, DateTime when, TimeSpan duration)
         {
-            scheduleByDay[when.Date].Add(new Booking(name, when, duration));
+            /// We use a Linq query to find any overlapping bookings. 
+            /// If it finds any, we throw the expected exception type, making the test pass.
+
+            var dayBookings = scheduleByDay[when.Date];
+
+            var whenEnd = when.Add(duration);
+
+            var overlap = from booking in dayBookings
+                          let bookingEnd = booking.When.Add(booking.Duration)
+                          where (when > booking.When && when < bookingEnd) || (whenEnd > booking.When && whenEnd < bookingEnd)
+                          select booking;
+
+            if (overlap.Any()) throw new OverlappingBookingException();
+
+            dayBookings.Add(new Booking(name, when, duration));
         }
         public List<Booking> GetBookingsFor(DateTime day)
         {

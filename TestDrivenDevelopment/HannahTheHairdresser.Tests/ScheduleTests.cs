@@ -54,6 +54,14 @@ namespace HannahTheHairdresser.Tests
             Assert.AreEqual("Tina", bookings[0].Name);
             Assert.AreEqual("Dave", bookings[1].Name);
         }
-    }
 
+        [Test]
+        public void CannotPlaceOverlappingBookings()
+        {
+            sut.MakeBooking("Dave", new DateTime(2012, 10, 14, 10, 0, 0), TimeSpan.FromMinutes(45));
+
+            Assert.Throws<OverlappingBookingException>(() 
+                => sut.MakeBooking("Tina", new DateTime(2012, 10, 14, 9, 30, 0), TimeSpan.FromMinutes(60)));
+        }
+    }
 }
