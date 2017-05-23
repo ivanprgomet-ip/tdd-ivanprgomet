@@ -49,5 +49,16 @@ namespace TravelAgency.Tests
 
             Assert.AreEqual(2, tours.Count);
         }
+
+        [Test]
+        public void SchedulingMoreThanThreeToursOnTheSameDateShouldNotBePossible()
+        {
+            sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 10, 15, 0), 20);
+            sut.CreateTour("tour de france", new DateTime(2013, 1, 1, 10, 15, 0), 80);
+            sut.CreateTour("tour de Alaska", new DateTime(2013, 1, 1, 10, 15, 0), 80);
+
+            Assert.Throws<TourAllocationException>(()
+                => sut.CreateTour("Im should fail tour", new DateTime(2013, 1, 1, 12, 16, 0), 5));
+        }
     }
 }

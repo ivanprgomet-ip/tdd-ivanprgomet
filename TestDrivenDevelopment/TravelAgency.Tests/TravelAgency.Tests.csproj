@@ -48,6 +48,7 @@
     <Compile Include="Tour.cs" />
     <Compile Include="TourSchedule.cs" />
     <Compile Include="TourScheduleTests.cs" />
+    <Compile Include="TravelAgencyExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
