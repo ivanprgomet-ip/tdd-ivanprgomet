@@ -32,6 +32,22 @@ namespace TravelAgency.Tests
         {
             sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 10, 15, 0), 20);
 
+            List<Tour> tours = sut.GetToursFor(new DateTime(2013, 1, 1));
+
+            Assert.AreEqual(1, tours.Count);
+        }
+
+        [Test]
+        public void GetToursForGivenDayOnly()
+        {
+            sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 10, 15, 0), 20);
+            sut.CreateTour("Bahama mama tour", new DateTime(2013, 4, 10, 10, 15, 0), 20);
+            sut.CreateTour("le swahili tour", new DateTime(2013, 6, 12, 10, 15, 0), 12);
+            sut.CreateTour("tour de france", new DateTime(2013, 1, 1, 10, 15, 0), 80);
+
+            List<Tour> tours = sut.GetToursFor(new DateTime(2013, 1, 1));
+
+            Assert.AreEqual(2, tours.Count);
         }
     }
 }

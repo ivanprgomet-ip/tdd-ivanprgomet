@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TravelAgency.Tests
 {
@@ -19,7 +20,10 @@ namespace TravelAgency.Tests
 
         public List<Tour> GetToursFor(DateTime dateTime)
         {
-            return _tours;
+            // The date variable will contain the date, the time part will be ignored
+            return _tours
+                .Where(t=>t.When.Date == dateTime.Date)
+                .ToList();
         }
     }
 }
