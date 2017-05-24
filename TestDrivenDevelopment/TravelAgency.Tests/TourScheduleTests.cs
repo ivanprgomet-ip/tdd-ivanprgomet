@@ -90,5 +90,27 @@ namespace TravelAgency.Tests
             Assert.Throws<InvalidSeatAmountException>(()
                => sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 12, 16, 0), -10));
         }
+
+        [Test]
+        public void TryingToGetToursOnUnbookedDayShouldThrowException()
+        {
+            var e = Assert.Throws<NoToursFoundForDateException>(() =>
+                sut.GetToursFor(new DateTime(2099, 9, 9)));
+
+            Assert.AreEqual("No tours found for the specified date!", e.Message);
+        }
+
+
+        //[Test]
+        //public void AddingToListDirectlyShouldNotBePossible()
+        //{
+        //    Assert.Throws<CannotUploadTourDirectlyToListException>(() =>
+        //     sut._tours.Add(new Tour()
+        //     {
+        //         Name = "default tour",
+        //         When = new DateTime(2017, 01, 01),
+        //         AvailableSeats = 99,
+        //     }));
+        //}
     }
 }

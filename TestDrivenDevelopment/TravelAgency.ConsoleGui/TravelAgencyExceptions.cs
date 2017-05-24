@@ -35,4 +35,12 @@ namespace TravelAgency.ConsoleGui
 
         }
     }
+
+    public class NoToursFoundForDateException : Exception
+    {
+        public NoToursFoundForDateException(string msg) : base(msg)
+        {
+
+        }
+    }
 }

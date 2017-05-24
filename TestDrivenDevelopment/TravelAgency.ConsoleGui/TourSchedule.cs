@@ -6,11 +6,11 @@ namespace TravelAgency.ConsoleGui
 {
     public class TourSchedule
     {
-        List<Tour> _tours = new List<Tour>();
+        private List<Tour> _tours = new List<Tour>();
 
         public void CreateTour(string tourName, DateTime when, int availableSeats)
         {
-            if (SameNameOnSameDateFound(tourName,when))
+            if (SameNameOnSameDateFound(tourName, when))
                 throw new TourWithIdenticalNameFoundException("This date already has a tour with an identical name!");
             if (availableSeats < 1)
                 throw new InvalidSeatAmountException($"{availableSeats} is an invalid seat count!");
@@ -65,9 +65,14 @@ namespace TravelAgency.ConsoleGui
         public List<Tour> GetToursFor(DateTime dateTime)
         {
             // The date variable will contain the date, the time part will be ignored
-            return _tours
-                .Where(t => t.When.Date == dateTime.Date)
-                .ToList();
+            if (_tours.Where(t => t.When.Date == dateTime.Date).ToList().Count == 0)
+                throw new NoToursFoundForDateException("No tours found for the specified date!");
+            else
+            {
+                return _tours
+                    .Where(t => t.When.Date == dateTime.Date)
+                    .ToList();
+            }
         }
     }
 }
