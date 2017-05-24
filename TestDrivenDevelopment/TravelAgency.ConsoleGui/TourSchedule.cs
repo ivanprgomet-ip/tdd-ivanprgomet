@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TravelAgency.Tests
+namespace TravelAgency.ConsoleGui
 {
     public class TourSchedule
     {

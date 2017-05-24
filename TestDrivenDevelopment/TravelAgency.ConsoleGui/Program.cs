@@ -10,6 +10,7 @@ namespace TravelAgency.ConsoleGui
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }

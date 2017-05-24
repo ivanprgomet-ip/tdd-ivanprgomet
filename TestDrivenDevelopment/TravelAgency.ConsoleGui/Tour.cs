@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TravelAgency.Tests
+namespace TravelAgency.ConsoleGui
 {
     public class Tour
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAgency.Tests
+namespace TravelAgency.ConsoleGui
 {
-    class TourAllocationException : Exception
+    public class TourAllocationException : Exception
     {
         public DateTime? _suggestedTime { get; set; }
 
@@ -20,7 +20,7 @@ namespace TravelAgency.Tests
         }
     }
 
-    class TourWithIdenticalNameFoundException: Exception
+    public class TourWithIdenticalNameFoundException: Exception
     {
         public TourWithIdenticalNameFoundException(string msg):base(msg)
         {
@@ -28,7 +28,7 @@ namespace TravelAgency.Tests
         }
     }
 
-    class InvalidSeatAmountException : Exception
+    public class InvalidSeatAmountException : Exception
     {
         public InvalidSeatAmountException(string msg) : base(msg)
         {
