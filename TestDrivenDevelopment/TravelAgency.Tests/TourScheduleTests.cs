@@ -82,5 +82,12 @@ namespace TravelAgency.Tests
             Assert.Throws<TourWithIdenticalNameFoundException>(()
                 => sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 12, 16, 0), 40));
         }
+
+        [Test]
+        public void TryingToAddNegativeAmountOfSeatsShouldNotBePossible()
+        {
+            Assert.Throws<InvalidSeatAmountException>(()
+               => sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 12, 16, 0), -10));
+        }
     }
 }

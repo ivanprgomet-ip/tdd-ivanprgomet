@@ -11,9 +11,9 @@ namespace TravelAgency.Tests
         public void CreateTour(string tourName, DateTime when, int availableSeats)
         {
             if (SameNameOnSameDateFound(tourName,when))
-            {
                 throw new TourWithIdenticalNameFoundException("This date already has a tour with an identical name!");
-            }
+            if (availableSeats < 1)
+                throw new InvalidSeatAmountException($"{availableSeats} is an invalid seat count!");
             if (_tours.Where(t => t.When.Date == when.Date).ToList().Count == 3)
                 throw new TourAllocationException(SuggestTimeFor(when));
             else

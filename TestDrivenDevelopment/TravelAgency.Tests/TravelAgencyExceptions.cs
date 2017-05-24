@@ -27,4 +27,12 @@ namespace TravelAgency.Tests
 
         }
     }
+
+    class InvalidSeatAmountException : Exception
+    {
+        public InvalidSeatAmountException(string msg) : base(msg)
+        {
+
+        }
+    }
 }
