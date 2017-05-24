@@ -60,5 +60,18 @@ namespace TravelAgency.Tests
             Assert.Throws<TourAllocationException>(()
                 => sut.CreateTour("Im should fail tour", new DateTime(2013, 1, 1, 12, 16, 0), 5));
         }
+
+        [Test]
+        public void SuggestNewDateWhenChoosenDateHasThreeToursAlreadyBooked()
+        {
+            sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 10, 15, 0), 20);
+            sut.CreateTour("tour de france", new DateTime(2013, 1, 1, 10, 15, 0), 80);
+            sut.CreateTour("tour de Alaska", new DateTime(2013, 1, 1, 10, 15, 0), 80);
+
+            var e = Assert.Throws<TourAllocationException>(()
+                => sut.CreateTour("Im should fail tour", new DateTime(2013, 1, 1, 12, 16, 0), 5));
+
+            Assert.AreEqual(new DateTime(2013, 1, 2, 12, 16, 0), e._suggestedTime);
+        }
     }
 }

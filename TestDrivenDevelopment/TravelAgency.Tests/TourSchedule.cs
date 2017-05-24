@@ -11,7 +11,7 @@ namespace TravelAgency.Tests
         public void CreateTour(string tourName, DateTime when, int availableSeats)
         {
             if (_tours.Where(t => t.When.Date == when.Date).ToList().Count == 3)
-                throw new TourAllocationException();
+                throw new TourAllocationException(SuggestTimeFor(when));
             else
             {
 
@@ -22,6 +22,30 @@ namespace TravelAgency.Tests
                     AvailableSeats = availableSeats,
                 });
             }
+        }
+
+        private DateTime? SuggestTimeFor(DateTime tried)
+        {
+            bool foundAvailableDate = false;
+            DateTime newSuggestionDate = tried;
+
+            while (!foundAvailableDate)
+            {
+                // check 1 day ahead until a date for a tour is found
+                newSuggestionDate = newSuggestionDate.AddDays(1);
+
+                // check if this date is free (eg. doesnt have three bookings already)
+                if (_tours.Where(t => t.When.Date == newSuggestionDate.Date).ToList().Count < 3)
+                {
+                    foundAvailableDate = true;
+                    break;
+                }
+            }
+
+            if (foundAvailableDate)
+                return newSuggestionDate;
+            else
+                return null;
         }
 
         public List<Tour> GetToursFor(DateTime dateTime)
