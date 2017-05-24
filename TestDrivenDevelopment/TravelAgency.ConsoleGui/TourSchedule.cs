@@ -18,7 +18,6 @@ namespace TravelAgency.ConsoleGui
                 throw new TourAllocationException(SuggestTimeFor(when));
             else
             {
-
                 _tours.Add(new Tour()
                 {
                     Name = tourName,

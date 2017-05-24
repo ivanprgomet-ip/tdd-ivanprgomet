@@ -99,18 +99,5 @@ namespace TravelAgency.Tests
 
             Assert.AreEqual("No tours found for the specified date!", e.Message);
         }
-
-
-        //[Test]
-        //public void AddingToListDirectlyShouldNotBePossible()
-        //{
-        //    Assert.Throws<CannotUploadTourDirectlyToListException>(() =>
-        //     sut._tours.Add(new Tour()
-        //     {
-        //         Name = "default tour",
-        //         When = new DateTime(2017, 01, 01),
-        //         AvailableSeats = 99,
-        //     }));
-        //}
     }
 }
