@@ -19,7 +19,6 @@ namespace StringCalculator.Tests
         }
 
 
-
         [Test]
         public void ReturnZeroForAnEmtpyString()
         {
@@ -44,6 +43,23 @@ namespace StringCalculator.Tests
             int sum = sut.Add("5,5");
 
             Assert.AreEqual(10, sum);
+        }
+
+
+        [Test]
+        public void AddingUnknownAmountOfNumbers()
+        {
+            int sum = sut.Add("5,5,3,7,4,9");
+
+            Assert.AreEqual(33, sum);
+        }
+
+        [Test]
+        public void AddMethodWorksWithBothNewlineAndCommas()
+        {
+            int sum = sut.Add("5\n2,2");
+
+            Assert.AreEqual(9, sum);
         }
     }
 }

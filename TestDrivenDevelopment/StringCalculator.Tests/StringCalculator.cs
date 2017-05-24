@@ -14,7 +14,7 @@ namespace StringCalculator.Tests
                 return 0;
             else
             {
-                char[] tokens = new char[] { ',' };
+                char[] tokens = new char[] { ',','\n' };
                 string[] nums = numbers.Split(tokens);
 
                 int sum = 0;
