@@ -61,5 +61,7 @@ namespace StringCalculator.Tests
 
             Assert.AreEqual(9, sum);
         }
+
+        
     }
 }
