@@ -8,9 +8,23 @@ namespace StringCalculator.Tests
 {
     class StringCalculator
     {
-        internal int Add(string v)
+        internal int Add(string numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == string.Empty)
+                return 0;
+            else
+            {
+                char[] tokens = new char[] { ',' };
+                string[] nums = numbers.Split(tokens);
+
+                int sum = 0;
+                foreach (var n in nums)
+                {
+                    sum += int.Parse(n);
+                }
+
+                return sum;
+            }
         }
     }
 }
