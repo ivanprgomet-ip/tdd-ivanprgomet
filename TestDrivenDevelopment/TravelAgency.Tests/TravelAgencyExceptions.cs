@@ -19,4 +19,12 @@ namespace TravelAgency.Tests
             this._suggestedTime = suggestedTime;
         }
     }
+
+    class TourWithIdenticalNameFoundException: Exception
+    {
+        public TourWithIdenticalNameFoundException(string msg):base(msg)
+        {
+
+        }
+    }
 }

@@ -73,5 +73,14 @@ namespace TravelAgency.Tests
 
             Assert.AreEqual(new DateTime(2013, 1, 2, 12, 16, 0), e._suggestedTime);
         }
+
+        [Test]
+        public void TryingToScheduleATourWithSameNameOnSameDateShouldNotBePossible()
+        {
+            sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 10, 15, 0), 20);
+
+            Assert.Throws<TourWithIdenticalNameFoundException>(()
+                => sut.CreateTour("New years day safari", new DateTime(2013, 1, 1, 12, 16, 0), 40));
+        }
     }
 }
