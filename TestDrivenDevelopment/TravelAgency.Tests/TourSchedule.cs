@@ -10,6 +10,10 @@ namespace TravelAgency.Tests
 
         public void CreateTour(string tourName, DateTime when, int availableSeats)
         {
+            if (SameNameOnSameDateFound(tourName,when))
+            {
+                throw new TourWithIdenticalNameFoundException("This date already has a tour with an identical name!");
+            }
             if (_tours.Where(t => t.When.Date == when.Date).ToList().Count == 3)
                 throw new TourAllocationException(SuggestTimeFor(when));
             else
@@ -22,6 +26,16 @@ namespace TravelAgency.Tests
                     AvailableSeats = availableSeats,
                 });
             }
+        }
+
+        private bool SameNameOnSameDateFound(string tourName, DateTime when)
+        {
+            foreach (var t in _tours)
+            {
+                if (t.Name == tourName && t.When.Date == when.Date)
+                    return true;
+            }
+            return false;
         }
 
         private DateTime? SuggestTimeFor(DateTime tried)
