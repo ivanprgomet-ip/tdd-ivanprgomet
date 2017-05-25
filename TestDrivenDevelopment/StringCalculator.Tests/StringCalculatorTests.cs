@@ -68,7 +68,7 @@ namespace StringCalculator.Tests
             var e = Assert.Throws<NegativesNotAllowedException>(()
                 => sut.Add("-1"));
 
-            StringAssert.Contains("Negatives not allowed in computation!", e.Message);
+            StringAssert.Contains("negatives not allowed", e.Message);
         }
 
     }

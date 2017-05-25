@@ -21,7 +21,7 @@ namespace StringCalculator.Tests
                 foreach (var n in nums)
                 {
                     if (int.Parse(n) < 0)
-                        throw new NegativesNotAllowedException("Negatives not allowed in computation!");
+                        throw new NegativesNotAllowedException("negatives not allowed");
 
                     sum += int.Parse(n);
                 }
