@@ -52,16 +52,39 @@ namespace StringCalculator.Tests
 
         private int CalculateSumWithCustomDelimiter(string numbers)
         {
-            // get the custom delimiter from the string
-            int indexTwo = numbers.IndexOf("\n");// index of the first \n
-            int customDelimiterLength = indexTwo - 2;
-            string customDelimiter = numbers.Substring(2, customDelimiterLength); // 2 is the index where the custom delimiter starts
+            if (numbers.Contains("[") && numbers.Contains("]"))
+            {
+                // we know the custom delimiter contains more chars
+                int startIndex = numbers.IndexOf("[")+1;
+                int endIndex = numbers.IndexOf("]");
+                int customDelimiterLength = endIndex - startIndex;
 
-            string[] nums = numbers.Split(new string[] { customDelimiter }, StringSplitOptions.None); // splitting by a string, and not a char!
+                string customDelimiter = numbers.Substring(startIndex, customDelimiterLength);
 
-            int sum = ExtractSum(nums);
+                string[] nums = numbers.Split(new string[] { customDelimiter }, StringSplitOptions.None); // splitting by a string, and not a char!
 
-            return sum;
+                // remove ] to make it work
+                for (int i = 0; i < nums.Length; i++)
+                    nums[i] = nums[i].Replace("]", string.Empty);
+
+                int sum = ExtractSum(nums);
+
+                return sum;
+            }
+            else
+            {
+
+                // get the custom delimiter from the string
+                int indexTwo = numbers.IndexOf("\n");// index of the first \n
+                int customDelimiterLength = indexTwo - 2;
+                string customDelimiter = numbers.Substring(2, customDelimiterLength); // 2 is the index where the custom delimiter starts
+
+                string[] nums = numbers.Split(new string[] { customDelimiter }, StringSplitOptions.None); // splitting by a string, and not a char!
+
+                int sum = ExtractSum(nums);
+
+                return sum;
+            }
         }
 
         private int ExtractSum(string[] nums)

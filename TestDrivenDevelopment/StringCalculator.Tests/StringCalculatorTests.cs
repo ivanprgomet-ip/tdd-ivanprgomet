@@ -89,7 +89,7 @@ namespace StringCalculator.Tests
         [Test]
         public void AddMethodWithOptionalCustomDelimiterCanBeOfAnyLength()
         {
-            int sum = sut.Add("//***\n1***2***3");
+            int sum = sut.Add("//[***]\n1***2***3");
 
             Assert.AreEqual(6, sum);
         }
