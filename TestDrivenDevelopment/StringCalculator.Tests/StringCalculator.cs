@@ -18,13 +18,22 @@ namespace StringCalculator.Tests
                 string[] nums = numbers.Split(tokens);
 
                 int sum = 0;
+                bool negativeFound = false;
+                StringBuilder negatives = new StringBuilder();
                 foreach (var n in nums)
                 {
                     if (int.Parse(n) < 0)
-                        throw new NegativesNotAllowedException("negatives not allowed");
+                    {
+                        negativeFound = true;
+                        negatives.Append(n+" ");
+                    }
 
                     sum += int.Parse(n);
                 }
+
+
+                if(negativeFound)
+                    throw new NegativesNotAllowedException("negatives not allowed "+negatives);
 
                 return sum;
             }
