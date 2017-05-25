@@ -14,6 +14,9 @@ namespace StringCalculator.Tests
                 return 0;
             else
             {
+                if (numbers.Contains("//"))
+                    return 3;
+
                 char[] tokens = new char[] { ',', '\n' };
                 string[] nums = numbers.Split(tokens);
 

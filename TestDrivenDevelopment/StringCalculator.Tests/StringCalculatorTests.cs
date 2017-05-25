@@ -64,13 +64,6 @@ namespace StringCalculator.Tests
         [Test]
         public void AddMethodWithOptionalCustomDelimiterShouldWork()
         {
-            /// 1. To change a delimiter, the beginning of the string 
-            /// will contain a separate line that looks like this:   
-            /// “//[delimiter]\n[numbers…]” for example “//;\n1;2” should return 
-            /// three where the default delimiter is ‘;’ .
-            /// 
-            /// 2.The first line is optional. all existing scenarios should still be supported
-
             int sum = sut.Add("//;\n1;2");
 
             Assert.AreEqual(3, sum);
