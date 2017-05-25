@@ -78,5 +78,12 @@ namespace StringCalculator.Tests
             StringAssert.Contains("negatives not allowed -1 -5", e.Message);
         }
 
+        [Test]
+        public void NumbersBiggerThan100ShouldBeIgnored()
+        {
+            int sum = sut.Add("1001,2");
+
+            Assert.AreEqual(2, sum);
+        }
     }
 }

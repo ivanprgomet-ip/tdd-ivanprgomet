@@ -28,15 +28,20 @@ namespace StringCalculator.Tests
                     if (int.Parse(n) < 0)
                     {
                         negativeFound = true;
-                        negatives.Append(n+" ");
+                        negatives.Append(n + " ");
                     }
-
-                    sum += int.Parse(n);
+                    else if (int.Parse(n) > 1000) // if current number is bigger than 1000, ignore it
+                        continue;
+                    else
+                        sum += int.Parse(n);
                 }
 
 
-                if(negativeFound)
-                    throw new NegativesNotAllowedException("negatives not allowed "+negatives);
+                if (negativeFound)
+                    throw new NegativesNotAllowedException("negatives not allowed " + negatives);
+                //else if (1000 < sum)
+                //    sum -= 1001;
+
 
                 return sum;
             }
