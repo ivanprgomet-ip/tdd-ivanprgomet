@@ -18,7 +18,6 @@ namespace StringCalculator.Tests
             sut = new StringCalculator();
         }
 
-
         [Test]
         public void ReturnZeroForAnEmtpyString()
         {
@@ -63,5 +62,14 @@ namespace StringCalculator.Tests
         }
 
         
+        [Test]
+        public void CallingAddWithNegativeNumberShouldThrowException()
+        {
+            var e = Assert.Throws<NegativesNotAllowedException>(()
+                => sut.Add("-1"));
+
+            StringAssert.Contains("Negatives not allowed in computation!", e.Message);
+        }
+
     }
 }

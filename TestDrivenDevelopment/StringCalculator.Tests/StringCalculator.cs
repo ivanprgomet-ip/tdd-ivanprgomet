@@ -14,12 +14,15 @@ namespace StringCalculator.Tests
                 return 0;
             else
             {
-                char[] tokens = new char[] { ',','\n' };
+                char[] tokens = new char[] { ',', '\n' };
                 string[] nums = numbers.Split(tokens);
 
                 int sum = 0;
                 foreach (var n in nums)
                 {
+                    if (int.Parse(n) < 0)
+                        throw new NegativesNotAllowedException("Negatives not allowed in computation!");
+
                     sum += int.Parse(n);
                 }
 
