@@ -85,5 +85,13 @@ namespace StringCalculator.Tests
 
             Assert.AreEqual(2, sum);
         }
+
+        [Test]
+        public void AddMethodWithOptionalCustomDelimiterCanBeOfAnyLength()
+        {
+            int sum = sut.Add("//***\n1***2***3");
+
+            Assert.AreEqual(6, sum);
+        }
     }
 }
