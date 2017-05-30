@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TravelAgency.ConsoleGui
 {
-    public class TourSchedule
+    public class TourSchedule : ITourSchedule
     {
         private List<Tour> _tours = new List<Tour>();
 
