@@ -54,6 +54,8 @@ namespace StringCalculator.Tests
         {
             if (numbers.Contains("[") && numbers.Contains("]"))
             {
+                List<string> delims = ExtractFromString(numbers, numbers.IndexOf("[").ToString(), numbers.IndexOf("]").ToString());
+
                 // we know the custom delimiter contains more chars
                 int startIndex = numbers.IndexOf("[")+1;
                 int endIndex = numbers.IndexOf("]");
@@ -100,6 +102,28 @@ namespace StringCalculator.Tests
 
             }
             return sum;
+        }
+
+
+        private static List<string> ExtractFromString(string text, string startString, string endString)
+        {
+            List<string> matched = new List<string>();
+            int indexStart = 0, indexEnd = 0;
+            bool exit = false;
+            while (!exit)
+            {
+                indexStart = text.IndexOf(startString);
+                indexEnd = text.IndexOf(endString);
+                if (indexStart != -1 && indexEnd != -1)
+                {
+                    matched.Add(text.Substring(indexStart + startString.Length,
+                        indexEnd - indexStart - startString.Length));
+                    text = text.Substring(indexEnd + endString.Length);
+                }
+                else
+                    exit = true;
+            }
+            return matched;
         }
     }
 }
