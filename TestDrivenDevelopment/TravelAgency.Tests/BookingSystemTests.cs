@@ -12,7 +12,7 @@ namespace TravelAgency.Tests
     public class BookingSystemTests
     {
         private TourScheduleStub tourScheduleStub;
-        private BookingSystem sut;
+        private BookingSystem sut; // the system under test
 
         [SetUp]
         public void Setup()
@@ -30,17 +30,23 @@ namespace TravelAgency.Tests
                 AvailableSeats = 80,
                 When = new DateTime(2017, 05, 05)
             };
-            ;
+            
             tourScheduleStub.Tours = new List<Tour> { tour };
 
-            Passenger passenger = new Passenger{ Firstname = "ivan", Lastname= "prgomet" };
+            Passenger passenger = new Passenger
+            {
+                Firstname = "ivan",
+                Lastname = "prgomet"
+            };
 
-            sut.CreateBooking("Safari", new DateTime(2017, 05, 05), passenger);
+            // book a passenger for an existing tour
+            sut.CreateBooking(tour.Name, tour.When, passenger);
             List<Booking> bookings = sut.GetBookingFor(passenger);
 
             Assert.AreEqual(1, bookings.Count());
-            //Assert.AreEqual(tour, bookings.FirstOrDefault().Tour); // TODO: WHY DOES THIS NOT PASS?
-            Assert.AreEqual(passenger, bookings.FirstOrDefault().Passenger);
+            Assert.AreEqual(tour, bookings[0].Tour);
+            //Assert.That(tour.Equals(bookings[0].Tour));
+            Assert.AreEqual(passenger, bookings[0].Passenger);
         }
     }
 

@@ -8,7 +8,7 @@ namespace TravelAgency.Tests
     public class BookingSystem
     {
         private ITourSchedule tourScheduleStub;
-        public List<Booking> Bookings { get; set; } // is this in the description?
+        public List<Booking> Bookings { get; set; }
 
         public BookingSystem(ITourSchedule tourScheduleStub)
         {
@@ -18,27 +18,24 @@ namespace TravelAgency.Tests
 
         public void CreateBooking(string name, DateTime when, Passenger passenger)
         {
-            var tour = tourScheduleStub.GetToursFor(when).FirstOrDefault(x => x.Name == name);
+            Tour tour = tourScheduleStub.GetToursFor(when).FirstOrDefault(x => x.Name == name);
+
+            if (tour.AvailableSeats < 1)
+                throw new InvalidSeatAmountException($"no available seats left for this tour!");
 
             Bookings.Add(
                 new Booking()
                 {
+                    Tour = tour,
                     Passenger = passenger,
-                    Tour = new Tour()
-                    {
-                        Name = name,
-                        When = when,
-                        AvailableSeats = 1,
-                    }
                 });
-
         }
 
-        internal List<Booking> GetBookingFor(Passenger passenger)
+        public List<Booking> GetBookingFor(Passenger passenger)
         {
             var bookings = Bookings.Where(b => b.Passenger == passenger).ToList();
 
-            return bookings;
+            return bookings.Count == 0 ? null:bookings;
         }
     }
 }
