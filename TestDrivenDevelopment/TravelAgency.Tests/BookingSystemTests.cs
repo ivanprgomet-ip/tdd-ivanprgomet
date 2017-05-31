@@ -30,7 +30,7 @@ namespace TravelAgency.Tests
                 AvailableSeats = 80,
                 When = new DateTime(2017, 05, 05)
             };
-            
+
             tourScheduleStub.Tours = new List<Tour> { tour };
 
             Passenger passenger = new Passenger
@@ -60,6 +60,37 @@ namespace TravelAgency.Tests
 
             Assert.Throws<TourDoesntExistException>(()
                 => sut.CreateBooking("non Existent Tour Name", new DateTime(9999, 9, 9), passenger));
+        }
+
+        [Test]
+        public void CantBookPassengerOnMoreSeatsThanAvailableForTour()
+        {
+            Passenger passengerOne = new Passenger()
+            {
+                Firstname = "ivan",
+                Lastname = "prgomet",
+            };
+
+            Passenger passengerTwo = new Passenger()
+            {
+                Firstname = "ben",
+                Lastname = "stiller",
+            };
+
+
+            Tour tour = new Tour()
+            {
+                Name = "Demo Tour",
+                AvailableSeats = 1,
+                When = new DateTime(2017, 05, 05)
+            };
+
+            tourScheduleStub.Tours = new List<Tour> { tour };
+
+            sut.CreateBooking(tour.Name, tour.When, passengerOne);
+
+            Assert.Throws<InvalidSeatAmountException>(()
+                => sut.CreateBooking(tour.Name, tour.When, passengerTwo));
         }
     }
 

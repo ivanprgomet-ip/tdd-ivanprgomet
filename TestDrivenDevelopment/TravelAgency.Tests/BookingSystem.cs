@@ -32,6 +32,8 @@ namespace TravelAgency.Tests
                     Tour = tour,
                     Passenger = passenger,
                 });
+
+            tour.AvailableSeats -= 1; // update available seats
         }
 
         public List<Booking> GetBookingFor(Passenger passenger)
