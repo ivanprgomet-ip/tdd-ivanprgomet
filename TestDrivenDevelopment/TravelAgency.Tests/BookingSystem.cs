@@ -20,6 +20,9 @@ namespace TravelAgency.Tests
         {
             Tour tour = tourScheduleStub.GetToursFor(when).FirstOrDefault(x => x.Name == name);
 
+            if (tour == null)
+                throw new TourDoesntExistException();
+
             if (tour.AvailableSeats < 1)
                 throw new InvalidSeatAmountException($"no available seats left for this tour!");
 
@@ -35,7 +38,7 @@ namespace TravelAgency.Tests
         {
             var bookings = Bookings.Where(b => b.Passenger == passenger).ToList();
 
-            return bookings.Count == 0 ? null:bookings;
+            return bookings.Count == 0 ? null : bookings;
         }
     }
 }

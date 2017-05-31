@@ -43,4 +43,8 @@ namespace TravelAgency.ConsoleGui
 
         }
     }
+    public class TourDoesntExistException:Exception
+    {
+
+    }
 }

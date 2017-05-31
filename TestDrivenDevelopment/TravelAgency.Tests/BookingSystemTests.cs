@@ -48,12 +48,25 @@ namespace TravelAgency.Tests
             //Assert.That(tour.Equals(bookings[0].Tour));
             Assert.AreEqual(passenger, bookings[0].Passenger);
         }
+
+        [Test]
+        public void CantBookPassengerOnNonExistentTour()
+        {
+            Passenger passenger = new Passenger()
+            {
+                Firstname = "ivan",
+                Lastname = "prgomet",
+            };
+
+            Assert.Throws<TourDoesntExistException>(()
+                => sut.CreateBooking("non Existent Tour Name", new DateTime(9999, 9, 9), passenger));
+        }
     }
 
     // handwritten stub. instead of relying on the actual tourschedule implementation.
     public class TourScheduleStub : ITourSchedule
     {
-        public List<Tour> Tours { get; set; }
+        public List<Tour> Tours { get; set; } = new List<Tour>();
 
         public void CreateTour(string tourName, DateTime when, int availableSeats)
         {
