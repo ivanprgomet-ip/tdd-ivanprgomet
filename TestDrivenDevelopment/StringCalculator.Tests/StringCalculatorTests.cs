@@ -94,12 +94,12 @@ namespace StringCalculator.Tests
             Assert.AreEqual(6, sum);
         }
 
-        [Test]
-        public void AddMethodWithOptionalMultipleCustomDelimitersOfAnyLength()
-        {
-            int sum = sut.Add("//[*][%]\n1*2%3");
+        //[Test]
+        //public void AddMethodWithOptionalMultipleCustomDelimitersOfAnyLength()
+        //{
+        //    int sum = sut.Add("//[*][%]\n1*2%3");
 
-            Assert.AreEqual(6, sum);
-        }
+        //    Assert.AreEqual(6, sum);
+        //}
     }
 }
