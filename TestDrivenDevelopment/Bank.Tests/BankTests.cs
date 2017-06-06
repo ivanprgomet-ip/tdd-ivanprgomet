@@ -149,13 +149,6 @@ namespace Bank.Tests
         [Test]
         public void VerifyingThatGetAuditLogGetsTheLogFromTheAuditLogger()
         {
-            ///We need to verify that when we call GetAuditLog on the bank object, 
-            ///that it do actually call the AuditLogger.GetLog() method. 
-            ///Setup the test so that the GetLog() method on the audit logger returns 
-            ///a list of three items. 
-            ///Use the mocking feature in NSubstitute to do this. 
-            ///Make sure in the test these three items are returned from the GetAuditLog Method. 
-
             auditLoggerStub.GetLog().Returns(new List<string>()
             {
                 {"item 1" },
