@@ -46,7 +46,23 @@ namespace Bank.Tests
         [Test]
         public void CanNotCreateDuplicateAccounts()
         {
-            
+            Account testAccount1 = new Account()
+            {
+                Name = "ivan prgomet",
+                Number = "19920320",
+                Balance = 0,
+            };
+            Account testAccount2 = new Account()
+            {
+                Name = "lisa simpson",
+                Number = "19920320",
+                Balance = 50,
+            };
+
+            sut.CreateAccount(testAccount1);
+
+            Assert.Throws<DuplicateAccountException>(()
+                => sut.CreateAccount(testAccount2));
         }
 
         [Test]

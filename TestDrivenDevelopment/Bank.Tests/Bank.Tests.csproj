@@ -51,7 +51,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Bank.cs" />
     <Compile Include="BankTests.cs" />
-    <Compile Include="DuplicateAccount.cs" />
+    <Compile Include="DuplicateAccountException.cs" />
     <Compile Include="IAuditLogger.cs" />
     <Compile Include="InvalidAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,7 +21,7 @@ namespace Bank.Tests
         public void CreateAccount(Account account)
         {
             if (_accounts.ContainsKey(account.Number))
-                throw new DuplicateAccount();
+                throw new DuplicateAccountException();
 
 
             int num = 0;
