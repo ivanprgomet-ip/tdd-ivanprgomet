@@ -29,7 +29,7 @@ namespace Bank.Tests
             {
                 _auditlogger.AddMessage("Warn12: CreateAccount, Invalid account number received");
                 _auditlogger.AddMessage("Error45: Alert, internal error, should not happen!");
-                throw new InvalidAccount();
+                throw new InvalidAccountException();
             }
 
             _accounts.Add(account.Number, account);

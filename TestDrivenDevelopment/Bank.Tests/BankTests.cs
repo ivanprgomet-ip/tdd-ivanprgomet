@@ -105,11 +105,25 @@ namespace Bank.Tests
             sut.CreateAccount(testAccount);
 
             Assert.AreEqual(1, sut.GetAuditLog().Count);
+
+            // checks if the auditlogger recieved 2 addmessage call containing argument of type string
+            auditLoggerStub.Received(1).AddMessage(Arg.Any<string>());
         }
         [Test]
         public void TwoMessagesAreWrittenToAuditLogWhenCreatingAnInvalidAccount()
         {
+            Account testAccount1 = new Account()
+            {
+                Name = "ivan prgomet",
+                Number = "greetings", // invalid number on purpose
+                Balance = 0,
+            };
+         
+            Assert.Throws<InvalidAccountException>(()
+                => sut.CreateAccount(testAccount1));
 
+            // checks if the auditlogger has recieved 2 addmessage calls containing any argument thats a string
+            auditLoggerStub.Received(2).AddMessage(Arg.Any<string>());
         }
 
         [Test]

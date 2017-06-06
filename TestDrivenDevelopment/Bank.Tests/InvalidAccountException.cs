@@ -2,7 +2,7 @@
 
 namespace Bank.Tests
 {
-    public class InvalidAccount : Exception
+    public class InvalidAccountException : Exception
     {
     }
 }

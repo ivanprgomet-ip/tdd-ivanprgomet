@@ -53,7 +53,7 @@
     <Compile Include="BankTests.cs" />
     <Compile Include="DuplicateAccountException.cs" />
     <Compile Include="IAuditLogger.cs" />
-    <Compile Include="InvalidAccount.cs" />
+    <Compile Include="InvalidAccountException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
