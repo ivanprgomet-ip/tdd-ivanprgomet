@@ -65,12 +65,6 @@ namespace Bank.Tests
                 => sut.CreateAccount(testAccount2));
         }
 
-        /// <summary>
-        /// Each time we create an account, 
-        /// we need to verify that the written message 
-        /// to the audit log contains both the name and 
-        /// account number of the newly created account.
-        /// </summary>
         [Test]
         public void OneMessageIsWrittenToAuditLogWhenCreatingAnAccount()
         {
@@ -97,7 +91,20 @@ namespace Bank.Tests
         [Test]
         public void OneMessageIsWrittenToAuditLogWhenCreatingAnValidAccount()
         {
+            Account testAccount = new Account()
+            {
+                Name = "ivan prgomet",
+                Number = "19920320",
+                Balance = 0,
+            };
 
+            // artificially creating (a return result) for every time the GetLog() runs. 
+            // In this case it will run once below when an account is created.
+            auditLoggerStub.GetLog().Returns(new List<string>() { { "doesnt matter whats in the message, as long as it contains 1 message" } });
+
+            sut.CreateAccount(testAccount);
+
+            Assert.AreEqual(1, sut.GetAuditLog().Count);
         }
         [Test]
         public void TwoMessagesAreWrittenToAuditLogWhenCreatingAnInvalidAccount()
