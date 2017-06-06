@@ -86,6 +86,10 @@ namespace Bank.Tests
 
             StringAssert.Contains("ivan prgomet", audits[0]);
             StringAssert.Contains("19920320", audits[0]);
+
+            // a fancier way of checking if the auditlogger has recieved one addmessage call containing
+            // argument of type string that contains the name and number of the testaccount information
+            auditLoggerStub.Received(1).AddMessage(Arg.Is<string>(m => m.Contains(testAccount.Name) && m.Contains(testAccount.Number)));
         }
 
         [Test]
@@ -129,13 +133,41 @@ namespace Bank.Tests
         [Test]
         public void AWarning12AndError45MessageIsWrittenToAuditLogWhenCreatingAnInvalidAccount()
         {
+            Account testAccount1 = new Account()
+            {
+                Name = "ivan prgomet",
+                Number = "greetings", // invalid number on purpose
+                Balance = 0,
+            };
 
+            Assert.Throws<InvalidAccountException>(()
+                => sut.CreateAccount(testAccount1));
+
+            auditLoggerStub.Received(2).AddMessage(Arg.Is<string>(m => m.Contains("Warn12:") || m.Contains("Error45:")));
         }
 
         [Test]
         public void VerifyingThatGetAuditLogGetsTheLogFromTheAuditLogger()
         {
+            ///We need to verify that when we call GetAuditLog on the bank object, 
+            ///that it do actually call the AuditLogger.GetLog() method. 
+            ///Setup the test so that the GetLog() method on the audit logger returns 
+            ///a list of three items. 
+            ///Use the mocking feature in NSubstitute to do this. 
+            ///Make sure in the test these three items are returned from the GetAuditLog Method. 
 
+            auditLoggerStub.GetLog().Returns(new List<string>()
+            {
+                {"item 1" },
+                {"item 2" },
+                {"item 3" },
+            });
+
+            List<string> logs = sut.GetAuditLog();
+
+            auditLoggerStub.Received(1).GetLog();
+
+            Assert.AreEqual(3, logs.Count);
         }
     }
 }
